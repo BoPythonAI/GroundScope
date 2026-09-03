@@ -233,8 +233,9 @@ curl -X POST http://127.0.0.1:8000/api/jobs \
 ## 🧪 Testing and Reproducibility
 
 ```bash
+export GS_PYTHON="${GS_PYTHON:-$PWD/.venv/bin/python}"
 source scripts/env.sh
-PYTHONPATH=. "$GS_ROOT/envs/runtime/bin/python" -m pytest -q
+PYTHONPATH=. "$GS_PYTHON" -m pytest -q
 cd frontend && npm ci && npm run build
 ```
 
@@ -243,8 +244,9 @@ The public snapshot passes **12 Python tests**. Every completed run records mode
 Reproduce the temporal selector ablation:
 
 ```bash
+export GS_PYTHON="${GS_PYTHON:-$PWD/.venv/bin/python}"
 source scripts/env.sh
-PYTHONPATH=. "$GS_ROOT/envs/runtime/bin/python" scripts/benchmark_selectors.py \
+PYTHONPATH=. "$GS_PYTHON" scripts/benchmark_selectors.py \
   "$GS_ROOT/data/samples/sintel.mp4" \
   --prompt 'Segment the woman.' \
   --frames 12
