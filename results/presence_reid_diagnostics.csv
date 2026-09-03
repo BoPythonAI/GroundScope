@@ -1,0 +1,4 @@
+filter_version,raw_presence_ratio,accepted_presence_ratio,identity_rejections,reacquisitions,bootstrap_rejections,candidate_components,discarded_components,backward_refined_frames,mean_temporal_iou
+presence-reid-v1,0.8508403361,0.4180672269,206,0,,,,0,0.8945970922
+component-reid-v2,0.7184873950,0.3067226891,194,1,18,600,252,0,0.9515325445
+mask-refine-v3,0.6447058824,0.4327731092,102,0,0,357,49,92,0.9379355904

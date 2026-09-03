@@ -1,0 +1,5 @@
+version,pipeline,targets,semantic_anchors,tracked_frames,precision,inference_seconds,peak_vram_gib,mean_temporal_iou,notes
+v0.3,Sa2VA-1B + forward SAM2,2,5 shared,1253/1253,BF16,87.55,4.97,0.86696,Sintel end-to-end multi-target run
+v0.4,bidirectional SAM2 + presence re-ID,1,5 target-specific,476/476,BF16,36.89,3.28,,crowded-pedestrian regression
+v0.5,component re-ID + bootstrap suppression,1,5 target-specific,476/476,BF16,37.17,3.29,,crowded-pedestrian regression
+v0.6,clean trusted-mask backward replay,1,5 target-specific,476/476,BF16,36.88,3.42,0.93794,crowded-pedestrian regression

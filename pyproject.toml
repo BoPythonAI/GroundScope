@@ -1,0 +1,36 @@
+[project]
+name = "groundscope"
+version = "0.6.0"
+description = "Interactive dense multi-target open-vocabulary video segmentation built on Sa2VA and SAM2"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  "accelerate>=1.10",
+  "aiofiles>=24.1",
+  "fastapi>=0.115",
+  "imageio-ffmpeg>=0.6",
+  "einops>=0.8",
+  "numpy>=1.26",
+  "opencv-python-headless>=4.10,<5",
+  "peft>=0.17",
+  "pillow>=10",
+  "python-multipart>=0.0.20",
+  "qwen-vl-utils>=0.0.14",
+  "safetensors>=0.6",
+  "sentencepiece>=0.2",
+  "sse-starlette>=2.3",
+  "timm>=1.0",
+  "torch>=2.7",
+  "transformers==4.57.1",
+  "uvicorn[standard]>=0.34",
+]
+
+[project.optional-dependencies]
+dev = ["httpx>=0.28", "pytest>=8.3", "ruff>=0.11"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"

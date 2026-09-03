@@ -1,0 +1,53 @@
+digraph GroundScopeArchitecture {
+  graph [
+    rankdir=TB,
+    bgcolor="#FFFFFF",
+    pad="0.35",
+    nodesep="0.35",
+    ranksep="0.55",
+    splines=ortho,
+    fontname="Arial",
+    label="GroundScope: Presence-aware Open-vocabulary Video Segmentation",
+    labelloc="t",
+    fontsize=22,
+    fontcolor="#172033"
+  ];
+
+  node [
+    shape=box,
+    style="rounded,filled",
+    fontname="Arial",
+    fontsize=11,
+    color="#CBD5E1",
+    fontcolor="#172033",
+    penwidth=1.2,
+    margin="0.18,0.12"
+  ];
+
+  edge [
+    color="#64748B",
+    penwidth=1.4,
+    arrowsize=0.7
+  ];
+
+  input [label="Video + up to four\nlanguage targets", fillcolor="#E0F2FE", color="#38BDF8"];
+  frontend [label="React inspection workspace\nupload · history · correction", fillcolor="#FEF3C7", color="#F59E0B"];
+  api [label="FastAPI + serialized GPU queue\nSSE progress · resumable jobs", fillcolor="#ECFDF5", color="#10B981"];
+  selector [label="Temporal frame selector\nsemantic · motion · hybrid", fillcolor="#F0F9FF"];
+  sa2va [label="Frozen Sa2VA-1B\ntarget-specific anchors + [SEG]", fillcolor="#EDE9FE", color="#8B5CF6", penwidth=1.8];
+  sam2 [label="Confidence-fused SAM2\nforward + reverse propagation", fillcolor="#F5F3FF", color="#A78BFA"];
+  components [label="Connected-component split\nsingle-target identity selection", fillcolor="#FFF7ED", color="#FB923C"];
+  reid [label="Presence state + CLIP re-ID\nexit · rejection · reacquisition", fillcolor="#FFEDD5", color="#F97316", penwidth=1.8];
+  replay [label="Trusted-mask bootstrap suppression\nclean visual-only backward replay", fillcolor="#FCE7F3", color="#EC4899"];
+  masks [label="Identity-filtered full-frame masks\nseparate provenance per target", fillcolor="#DCFCE7", color="#22C55E", penwidth=1.8];
+  audit [label="Audit layer\ncoverage · presence · IoU · latency · VRAM", fillcolor="#ECFDF5", color="#10B981"];
+  artifacts [label="Reproducible artifacts\nH.264 · masks · CSV/JSON · model revisions", fillcolor="#E0E7FF", color="#6366F1"];
+  correction [label="Human mask revision\ntarget-specific add / erase", fillcolor="#FEF3C7", color="#F59E0B"];
+
+  input -> frontend -> api -> selector -> sa2va -> sam2 -> components -> reid -> replay -> masks;
+  masks -> audit;
+  masks -> artifacts;
+  audit -> frontend;
+  artifacts -> frontend;
+  frontend -> correction -> audit;
+}
