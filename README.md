@@ -128,6 +128,14 @@ The v0.3 row uses a longer two-target video; v0.4–v0.6 use a 19.0-second singl
 
 In the v0.6 regression, the first identity-validated mask is replayed backward in a clean SAM 2 state. The accepted track covers the target's early appearance and remains empty after departure. The second component pass evaluates 357 regions, discards 49 alternatives, and reports no ambiguous frames.
 
+### 🧣 Red-scarf disappearance regression
+
+The 24-checkpoint contact sheet below visualizes the full 476-frame regression for `the woman wearing a red scarf`. The cyan overlay follows the requested person while she is visible; after she exits the scene, the identity-filtered output remains empty instead of switching to nearby pedestrians.
+
+![GroundScope red-scarf identity tracking and disappearance regression](docs/assets/demo_red_scarf_reid.jpg)
+
+This qualitative view corresponds to the `mask-refine-v3` row above: 102 identity-jump candidates were rejected, 49 alternative components were discarded, and 92 early frames were recovered through clean backward replay. It is a system regression visualization rather than a ground-truth accuracy benchmark.
+
 Exact machine-readable tables are versioned under [`results/`](results/).
 
 ## 📈 Temporal Selector Ablation
